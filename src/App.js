@@ -37,7 +37,7 @@ function App() {
         }
 }
   getData()
-  const hey = b => event => {
+  const handleChange = b => event => {
     console.log(event.target.value);
     console.log(b)
     BooksAPI.update(b, event.target.value)
@@ -108,7 +108,7 @@ function App() {
                             }}
                           ></div>
                           <div className="book-shelf-changer">
-                            <select onChange={hey(b)}>
+                            <select onChange={handleChange(b)}>
                               <option value="none" disabled>
                                 Move to...
                               </option>
@@ -160,7 +160,7 @@ function App() {
                             }}
                           ></div>
                           <div className="book-shelf-changer">
-                            <select onChange={hey(b)}>
+                            <select onChange={handleChange(b)}>
                               <option value="none" disabled>
                                 Move to...
                               </option>
@@ -203,7 +203,7 @@ function App() {
                             }}
                           ></div>
                           <div className="book-shelf-changer">
-                            <select onChange={hey(b)}>
+                            <select onChange={handleChange(b)}>
                               <option value="none" disabled>
                                 Move to...
                               </option>
@@ -247,7 +247,7 @@ function App() {
                             }}
                           ></div>
                           <div className="book-shelf-changer">
-                            <select onChange={hey(b)}>
+                            <select onChange={handleChange(b)}>
                               <option value="none" disabled>
                                 Move to...
                               </option>
