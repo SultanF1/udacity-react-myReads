@@ -47,16 +47,28 @@ function App() {
 
   const [searchResults, setResults] = useState([]);
   const [found, setFound] = useState(false);
+
   const search = async function(){
+    setFound(false);
     let element = document.getElementById('search');
     console.log(element.value)
+    try{
     const result = await BooksAPI.search(element.value)
+    
     console.log(result)
     setResults(result)
-    if (result.length !== 0){
+    if (typeof result.length !== 'undefined'){
+      console.log('yes')
+      console.log(result.length)
       setFound(true);
     }
-    
+    else{
+      console.log('no')
+    }
+  }
+  catch(e){
+    console.log(e)
+  }
   }
   return (
     <div className="app">
@@ -115,7 +127,7 @@ function App() {
                     </li>
                 ))
               ) : (
-                null
+                <h1>Not found</h1>
               )}
           </div>
         </div>
