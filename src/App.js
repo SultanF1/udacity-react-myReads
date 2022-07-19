@@ -21,25 +21,24 @@ function App() {
   const getData = async function(){
         if(loading){
     const result = await BooksAPI.getAll();
-      console.log(result)
+      
       setBooks(result);
       const tmp = await result.filter((b) => b.shelf === 'currentlyReading')
       setCr(tmp);
-      console.log(tmp)
+      
       const tmp2 = await result.filter((b) => b.shelf === 'wantToRead')
       setWtr(tmp2);
       const tmp3 = await result.filter((b) => b.shelf === 'read')
       setR(tmp3);
       if (books.length !== 0){
         setLoading(false);
-        console.log(cr)
+        
   }
         }
 }
   getData()
   const handleChange = b => event => {
-    console.log(event.target.value);
-    console.log(b)
+    
     BooksAPI.update(b, event.target.value)
     setLoading(true);
     getData()
@@ -47,20 +46,27 @@ function App() {
 
   const [searchResults, setResults] = useState([]);
   const [found, setFound] = useState(false);
-
+  
+    
+  
   const search = async function(){
     setFound(false);
     let element = document.getElementById('search');
-    console.log(element.value)
+    
     try{
     const result = await BooksAPI.search(element.value)
     
-    console.log(result)
-    setResults(result)
+    
+    
     if (typeof result.length !== 'undefined'){
-      console.log('yes')
-      console.log(result.length)
+
       setFound(true);
+      
+      const filtered = result.filter(b => typeof b.imageLinks !== 'undefined')
+      setResults(filtered)
+
+      
+
     }
     else{
       console.log('no')
@@ -94,6 +100,7 @@ function App() {
           <div className="search-books-results">
             <ol className="books-grid"></ol>
             {found ? (
+              
                 searchResults.map(b => (
                   <li key={b.id}>
                       <div className="book">
@@ -126,6 +133,7 @@ function App() {
                       </div>
                     </li>
                 ))
+                
               ) : (
                 <h1>Not found</h1>
               )}
