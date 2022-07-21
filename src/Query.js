@@ -1,13 +1,14 @@
 import { useState, useEffect } from "react";
 import * as BooksAPI from "./BooksAPI";
 import "./App.css";
-function Query(stateChanger){
+import { Link } from "react-router-dom";
+function Query(){
 
 
   const shelves = [ { id: "1", shelfName: "currentlyReading", shelfDisplayName: "Currently Reading" }, { id: "2", shelfName: "wantToRead", shelfDisplayName: "Want To Read" },
     { id: "3", shelfName: "read", shelfDisplayName: "Read" }, { id: "4", shelfName: "none", shelfDisplayName: "None" }];
 
-    stateChanger = stateChanger.stateChanger
+    
 
   const [searchResults, setResults] = useState([]);
   const [found, setFound] = useState(false);
@@ -98,12 +99,12 @@ function Query(stateChanger){
   return(
     <div className="search-books">
           <div className="search-books-bar">
-            <a
+            <Link
               className="close-search"
-              onClick={() => stateChanger(false)}
+              to = "/"
             >
               Close
-            </a>
+            </Link>
             <div className="search-books-input-wrapper">
               <input
                 type="text"

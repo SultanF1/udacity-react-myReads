@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import * as BooksAPI from "./BooksAPI";
-
+import {Link, Route, Routes} from 'react-router-dom'
 function Bookshelf(){
 
     const shelves = [ { id: "1", shelfName: "currentlyReading", shelfDisplayName: "Currently Reading" }, { id: "2", shelfName: "wantToRead", shelfDisplayName: "Want To Read" },
@@ -48,7 +48,12 @@ function Bookshelf(){
 
     
     return(
-        
+        <div className="list-books">
+          <div className="list-books-title">
+            <h1>MyReads</h1>
+          </div>
+          <div className="list-books-content">
+            <div></div>
         <div className="bookshelf">
         { shelves.map((s) => (
         <div key={ s.id }>
@@ -96,6 +101,11 @@ function Bookshelf(){
         </div>
         )) }
         </div>
+        </div>
+        <div className="open-search">
+            <Link to="/search" >Add a book</Link>
+          </div>
+          </div>
     );
 
 
